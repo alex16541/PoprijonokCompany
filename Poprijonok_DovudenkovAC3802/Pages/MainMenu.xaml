@@ -11,10 +11,10 @@
       ShowsNavigationUI="False">
 
     <Grid>
-        <Button Name="btnAgents" Content="Агенты" HorizontalAlignment="Left" Margin="278,158,0,0" VerticalAlignment="Top" Width="258" Click="btnAgents_Click" FontSize="28" Height="69" Background="#FFF9969E" Foreground="#FF43DCFE" FontWeight="Bold" FontFamily="Comic Sans MS"/>
-        <Button Name="btnExit" Content="Выйти" HorizontalAlignment="Left" Margin="278,317,0,0" VerticalAlignment="Top" Width="258" Click="btnExit_Click" FontSize="28" Height="69" Background="#FFF9969E" Foreground="#FF43DCFE" FontWeight="Bold" FontFamily="Comic Sans MS"/>
-        <Label Content="Попрыженок" HorizontalAlignment="Left" Height="67" Margin="303,37,0,0" VerticalAlignment="Top" Width="291" FontSize="40" Foreground="#FF43DCFE" RenderTransformOrigin="0.684,0.545" FontFamily="Comic Sans MS"/>
-        <Image Margin="229,37,502,346" Source="/Poprijonok_DovudenkovAC3802;component/Попрыженок.ico" Stretch="Fill"/>
+        <Button Name="btnAgents" Content="Агенты" HorizontalAlignment="Center" Margin="0,158,0,0" VerticalAlignment="Top" Width="258" Click="btnAgents_Click" FontSize="28" Height="69" Background="#FFF9969E" Foreground="#FF43DCFE" FontWeight="Bold" FontFamily="Comic Sans MS"/>
+        <Button Name="btnExit" Content="Выйти" HorizontalAlignment="Center" Margin="0,317,0,0" VerticalAlignment="Top" Width="258" Click="btnExit_Click" FontSize="28" Height="69" Background="#FFF9969E" Foreground="#FF43DCFE" FontWeight="Bold" FontFamily="Comic Sans MS"/>
+        <Label Content="Попрыженок" HorizontalAlignment="Center" Height="67" Margin="257,37,257,0" VerticalAlignment="Top"  Width="286" FontSize="40" Foreground="#FF43DCFE" RenderTransformOrigin="0.684,0.545" FontFamily="Comic Sans MS"/>
+        <Image Margin="164,37,567,346" Width="70" Height="70" HorizontalAlignment="Center" VerticalAlignment="Top" Source="/Poprijonok_DovudenkovAC3802;component/Попрыженок.ico" Stretch="Fill"/>
 
     </Grid>
 </Page>

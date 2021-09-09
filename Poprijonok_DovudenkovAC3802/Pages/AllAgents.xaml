@@ -11,7 +11,13 @@
       ShowsNavigationUI="False">
 
     <Grid>
-        <DataGrid Name="dgAgents" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="339" Margin="10,10,0,0" VerticalAlignment="Top" Width="780">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="10*"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid Name="dgAgents" AutoGenerateColumns="False" HorizontalAlignment="Center"  Margin="0,10,0,0" VerticalAlignment="Top" Grid.Row="1">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Title" Binding="{Binding Title}" Width="1*"/>
                 <DataGridTextColumn Header="YearSales"  Width="1*"/>
@@ -19,9 +25,22 @@
                 <DataGridTextColumn Header="Phone" Binding="{Binding Phone}" Width="1*"/>
                 <DataGridTextColumn Header="Type" Binding="{Binding AgentType.Title}" Width="1*"/>
                 <DataGridTextColumn Header="Priority" Binding="{Binding Priority}" Width="1*"/>
+                <DataGridTemplateColumn Header="Действия">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                                <Button Name="btnEdit" Click="btnEdit_Click" Content="Изменить" HorizontalAlignment="Left" Margin="5" VerticalAlignment="Center"
+                                        Background="#FFF9969E" Foreground="#FF43DCFE" FontWeight="Bold" FontFamily="Comic Sans MS"/>
+                                <Button Name="btnDelete" Click="btnDelete_Click" Content="Удалить" HorizontalAlignment="Right" Margin="5" VerticalAlignment="Center"
+                                        Background="#FFF9969E" Foreground="#FF43DCFE" FontWeight="Bold" FontFamily="Comic Sans MS"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Name="btnBack" Content="Назад" HorizontalAlignment="Left" Margin="10,371,0,0" VerticalAlignment="Top" Width="161" Click="btnBack_Click" FontSize="28" Height="69" Background="#FFF9969E" Foreground="#FF43DCFE" FontWeight="Bold" FontFamily="Comic Sans MS"/>
+        <Button Name="btnBack" Content="Назад" HorizontalAlignment="Left" Margin="10,0,0,0" VerticalAlignment="Center" Click="btnBack_Click" FontSize="28" Height="60" Background="#FFF9969E" Foreground="#FF43DCFE" FontWeight="Bold" FontFamily="Comic Sans MS" Grid.Row="2" Width="150" />
+        <Label Content="Попрыженок" HorizontalAlignment="Center"  Margin="0,0,0,0" VerticalAlignment="Center"  FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" Foreground="#FF43DCFE" RenderTransformOrigin="0.684,0.545" FontFamily="Comic Sans MS"/>
 
     </Grid>
 </Page>

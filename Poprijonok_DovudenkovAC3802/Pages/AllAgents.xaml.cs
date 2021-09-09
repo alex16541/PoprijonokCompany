@@ -41,5 +41,15 @@ namespace Poprijonok_DovudenkovAC3802
             if(owner.CanGoBack)
                 owner.GoBack();
         }
+
+        private void btnEdit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

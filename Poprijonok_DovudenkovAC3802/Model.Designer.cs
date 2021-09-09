@@ -1,4 +1,4 @@
-﻿// Создание кода T4 для модели "F:\01_WorkSpace\WEB\ASP\Poprijonok_DovudenkovAC3802\Poprijonok_DovudenkovAC3802\Model.edmx" включено. 
+﻿// Создание кода T4 для модели "C:\Users\10180027\Source\Repos\alex16541\PoprijonokCompany\Poprijonok_DovudenkovAC3802\Model.edmx" включено. 
 // Чтобы включить формирование кода прежних версий, измените значение свойства "Стратегия создания кода" конструктора
 // на "Legacy ObjectContext". Это свойство доступно в окне "Свойства", если модель
 // открыта в конструкторе.
