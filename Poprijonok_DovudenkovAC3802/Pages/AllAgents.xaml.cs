@@ -45,7 +45,7 @@ namespace Poprijonok_DovudenkovAC3802
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            AgentEditWindow editWindow = new AgentEditWindow() { id = int.Parse(dgAgents.SelectedValue.ToString()) };
+            AgentEditWindow editWindow = new AgentEditWindow(int.Parse(dgAgents.SelectedValue.ToString()));
             
             if(editWindow.ShowDialog() == true)
             {

@@ -22,17 +22,12 @@ namespace Poprijonok_DovudenkovAC3802
     public partial class AgentEditWindow : Window
     {
         public int id;
+        private bool isEdited = false;
         private Agent agent;
 
         public AgentEditWindow()
         {
-            InitializeComponent();
-            dbContext.db.AgentType.Load();
-            cbType.ItemsSource = dbContext.db.AgentType.ToList();
-            cbType.SelectedValuePath = "ID";
-            cbType.DisplayMemberPath = "Title";
-            cbType.SelectedIndex = 0;
-            agent = new Agent();
+            InitComponents();
 
             if(id > 0)
             {
@@ -43,24 +38,17 @@ namespace Poprijonok_DovudenkovAC3802
                 cbType.SelectedValue = agent.AgentTypeID;
             }
         }
-        public AgentEditWindow()
+        public AgentEditWindow(int id)
         {
-            InitializeComponent();
-            dbContext.db.AgentType.Load();
-            cbType.ItemsSource = dbContext.db.AgentType.ToList();
-            cbType.SelectedValuePath = "ID";
-            cbType.DisplayMemberPath = "Title";
-            cbType.SelectedIndex = 0;
-            agent = new Agent();
-
-            if (id > 0)
-            {
-                agent = dbContext.db.Agent.Where(a => a.ID == id).FirstOrDefault();
-                tbName.Text = agent.Title;
-                tbPhone.Text = agent.Phone;
-                tbPreority.Text = agent.Priority.ToString();
-                cbType.SelectedValue = agent.AgentTypeID;
-            }
+            InitComponents();
+            this.id = id;
+            isEdited = true;
+            agent = dbContext.db.Agent.Where(a => a.ID == id).FirstOrDefault();
+            tbName.Text = agent.Title;
+            tbPhone.Text = agent.Phone;
+            tbPreority.Text = agent.Priority.ToString();
+            cbType.SelectedValue = agent.AgentTypeID;
+            
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
@@ -71,7 +59,7 @@ namespace Poprijonok_DovudenkovAC3802
 
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
         {
-            DialogResult = true;
+            
             if(tbName.Text != "")
             {
                 if(cbType.SelectedItem != null)
@@ -88,15 +76,13 @@ namespace Poprijonok_DovudenkovAC3802
                                 agent.Priority = priority;
                             }
                             agent.AgentTypeID = int.Parse(cbType.SelectedValue.ToString());
-                            if( id == 0)
+                            if(!isEdited)
                             {
-                                dbContext.db.Agent.Add(agent);
-                                this.Close();
+                                dbContext.db.Agent.Add(agent);   
                             }
-                            else
-                            {
-
-                            }
+                            dbContext.db.SaveChanges();
+                            DialogResult = true;
+                            this.Close();
                         }
                         else { MessageBox.Show("Error!", "Введены не парвильные данные! (Приоритет)", MessageBoxButton.OK); }
                     }
@@ -105,6 +91,16 @@ namespace Poprijonok_DovudenkovAC3802
                 else { MessageBox.Show("Error!", "Введены не парвильные данные! (Тип)", MessageBoxButton.OK); }
             }
             else { MessageBox.Show("Error!", "Введены не парвильные данные! (Название)", MessageBoxButton.OK); }
+        }
+        private void InitComponents()
+        {
+            InitializeComponent();
+            dbContext.db.AgentType.Load();
+            cbType.ItemsSource = dbContext.db.AgentType.ToList();
+            cbType.SelectedValuePath = "ID";
+            cbType.DisplayMemberPath = "Title";
+            cbType.SelectedIndex = 0;
+            agent = new Agent();
         }
     }
 }
