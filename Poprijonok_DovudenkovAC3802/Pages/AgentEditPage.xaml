@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Poprijonok_DovudenkovAC3802"
       mc:Ignorable="d"
-      Title="Агент" Width="670.36" Height="540.997">
+      Title="Агент" Width="670.36" Height="540.997" ResizeMode="NoResize">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -24,22 +24,50 @@
             <RowDefinition Height="3*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
-        <Button Name="btnConfirm" Content="ОК" HorizontalAlignment="Center" Margin="10" Grid.Row="7" VerticalAlignment="Center"  Grid.Column="3"
-                Background="#FFF9969E" Foreground="#FF43DCFE" FontWeight="Bold" FontFamily="Comic Sans MS" Height="52" Width="206"
-                FontSize="20"
-                />
-        <Button Name="btnCancel" Content="Отмена" HorizontalAlignment="Center" Margin="10" Grid.Row="7" VerticalAlignment="Center"  Grid.Column="0"
-                Background="#FFF9969E" Foreground="#FF43DCFE" FontWeight="Bold" FontFamily="Comic Sans MS" Height="52" Width="206"
-                FontSize="20"
-                />
+        
         <TextBlock HorizontalAlignment="Right" Margin="5" Grid.Row="1" TextWrapping="Wrap" Text="Название:" VerticalAlignment="Center" Grid.ColumnSpan="2" 
-                   FontSize="20"/>
-        <TextBox Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Center" Height="44" Margin="5" Grid.Row="1" TextWrapping="NoWrap" Text="TextBox" VerticalAlignment="Center"
-                 FontSize="20" VerticalContentAlignment="Center"/>
+                   FontSize="20" Grid.Column="0" FontFamily="Comic Sans MS"/>
+        <TextBox Name="tbName" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Left"  Margin="5" Grid.Row="1" TextWrapping="NoWrap"  VerticalAlignment="Center"
+                 FontSize="20" VerticalContentAlignment="Center" Width="315" FontFamily="Comic Sans MS"/>
         <TextBlock HorizontalAlignment="Right" Margin="5" Grid.Row="2" TextWrapping="Wrap" Text="Тип:" VerticalAlignment="Center" Grid.ColumnSpan="2" 
-                   FontSize="20"/>
-        <ComboBox Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Center" Height="44" Margin="5" Grid.Row="2"  Text="TextBox" VerticalAlignment="Center" 
-                 FontSize="20" VerticalContentAlignment="Center"/>
-
+                   FontSize="20" Grid.Column="0" FontFamily="Comic Sans MS"/>
+        <ComboBox Name="cbType" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Left" Margin="5" Grid.Row="2"  Text="TextBox" VerticalAlignment="Center" 
+                 FontSize="20" VerticalContentAlignment="Center" Width="315" FontFamily="Comic Sans MS"/>
+        <Label Content="Агент" HorizontalAlignment="Center"  Margin="5" 
+               VerticalAlignment="Center"  FontSize="20" 
+               HorizontalContentAlignment="Center" 
+               VerticalContentAlignment="Top" 
+               Foreground="#FF43DCFE" RenderTransformOrigin="0.684,0.545" 
+               FontFamily="Comic Sans MS" Grid.ColumnSpan="2" 
+               Grid.Column="1"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,18.7,4.98,18.3" 
+                   Grid.Row="3" TextWrapping="Wrap" Text="Телефон:" VerticalAlignment="Center" 
+                   FontSize="20" Grid.Column="0" Grid.ColumnSpan="2"
+                   FontFamily="Comic Sans MS"/>
+        <TextBox Name="tbPhone" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Left"  
+                 Margin="5" Grid.Row="3" TextWrapping="NoWrap"  
+                 VerticalAlignment="Center"
+                 FontSize="20" VerticalContentAlignment="Center" 
+                 Width="315"
+                 FontFamily="Comic Sans MS"/>
+        <TextBlock HorizontalAlignment="Right" Margin="0,18.9,4.39,18.1" 
+                   Grid.Row="4" TextWrapping="Wrap" Text="Приоритет:" 
+                   VerticalAlignment="Center" 
+                   FontSize="20" Grid.Column="0" 
+                   Grid.ColumnSpan="2"
+                   FontFamily="Comic Sans MS"/>
+        <TextBox Name="tbPreority"  Grid.ColumnSpan="2" Grid.Column="2"
+                 HorizontalAlignment="Left"  Margin="5" Grid.Row="4" 
+                 TextWrapping="NoWrap"  VerticalAlignment="Center"
+                 FontSize="20" VerticalContentAlignment="Center" 
+                 Width="315" FontFamily="Comic Sans MS"/>
+        <Button Name="btnConfirm" Content="ОК" HorizontalAlignment="Center" Margin="10" Grid.Row="7" VerticalAlignment="Center"  Grid.Column="2" Grid.ColumnSpan="2"
+                Background="#FFF9969E" Foreground="#FF43DCFE" FontWeight="Bold" FontFamily="Comic Sans MS" Width="150" Height="40" 
+                FontSize="20" Click="btnConfirm_Click"
+                />
+        <Button Name="btnCancel" Content="Отмена" HorizontalAlignment="Center" Margin="10" Grid.Row="7" VerticalAlignment="Center"  Grid.Column="0" Grid.ColumnSpan="2"
+                Background="#FFF9969E" Foreground="#FF43DCFE" FontWeight="Bold" FontFamily="Comic Sans MS" Width="150" Height="40"
+                FontSize="20" Click="btnCancel_Click"
+                />
     </Grid>
 </Window>
