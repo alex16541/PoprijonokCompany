@@ -14,12 +14,18 @@ Microsoft Visual Studio 2019 с поддержкой WPF приложений
 
 ### Установка
 
-1.Запустить Visual Studio 
+1.Запустить Visual Studio
+
 2.Нажать кнопку "Клонировать репозиторий"
-3.В поле "расположение репозитория" ввставить "https://github.com/alex16541/PoprijonokCompany" 
+
+3.В поле "расположение репозитория" ввставить "https://github.com/alex16541/PoprijonokCompany"
+
 4.Нажать кнопку клонировать
+
 5.Открыть MS SQL Server
+
 6.Запустить скрипт "sql_script.sql"
+
 7.Открыть клонированный проект
 
 ## Авторы
