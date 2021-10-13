@@ -31,9 +31,9 @@ namespace Poprijonok_DovudenkovAC3802
             InitializeComponent();
             this.owner = owner;
             dbContext.db.Agent.Load();
-            dbContext.db.AgentType.Load();
-            dgAgents.ItemsSource = dbContext.db.Agent.ToList();
-            dgAgents.SelectedValuePath = "ID";
+            lvAgents.ItemsSource = dbContext.db.Agent.ToList();
+            lvAgents.SelectedValuePath = "ID";
+            hideDeletedItem();
 
         }
 
@@ -45,7 +45,8 @@ namespace Poprijonok_DovudenkovAC3802
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            AgentEditWindow editWindow = new AgentEditWindow(int.Parse(dgAgents.SelectedValue.ToString()));
+            Button btnEdit = (Button)sender;
+            AgentEditWindow editWindow = new AgentEditWindow(int.Parse(btnEdit.Uid.ToString()));
             
             if(editWindow.ShowDialog() == true)
             {
@@ -57,14 +58,27 @@ namespace Poprijonok_DovudenkovAC3802
         {
             if(MessageBox.Show("Внимание!", "Удалаить агента?", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
             {
-                dbContext.db.Agent.Remove(dbContext.db.Agent.Where(a => a.ID == int.Parse(dgAgents.SelectedValue.ToString())).FirstOrDefault());
+                Button btnEdit = (Button)sender;
+                Agent agent = dbContext.db.Agent.Where(a => a.ID == int.Parse(btnEdit.Uid.ToString())).FirstOrDefault();
+                agent.IsDeleted = true;
                 dgRefresh();
             }
         }
         private void dgRefresh()
         {
-            dgAgents.ItemsSource = dbContext.db.Agent.ToList();
-            dgAgents.Items.Refresh();
+            lvAgents.ItemsSource = dbContext.db.Agent.ToList();
+            lvAgents.Items.Refresh();
+            hideDeletedItem();
+        }
+        private void hideDeletedItem()
+        {
+            //foreach (item in lvAgents.Items)
+            //{
+            //    if ((item.DataContext as Agent).IsDeleted)
+            //    {
+            //        item.Visibility = Visibility.Collapsed;
+            //    }
+            //}
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
