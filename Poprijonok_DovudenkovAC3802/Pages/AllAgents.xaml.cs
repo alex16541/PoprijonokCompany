@@ -22,19 +22,18 @@ namespace Poprijonok_DovudenkovAC3802
     public partial class AllAgents : Page
     {
         NavigationWindow owner;
+        List<Agent> Agents;
         public AllAgents()
         {
             InitializeComponent();
         }
         public AllAgents(NavigationWindow owner)
         {
-            InitializeComponent();
             this.owner = owner;
+            InitializeComponent();
             dbContext.db.Agent.Load();
-            lvAgents.ItemsSource = dbContext.db.Agent.ToList();
             lvAgents.SelectedValuePath = "ID";
-            hideDeletedItem();
-
+            listViewRefresh();
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -50,7 +49,7 @@ namespace Poprijonok_DovudenkovAC3802
             
             if(editWindow.ShowDialog() == true)
             {
-                dgRefresh();
+                listViewRefresh();
             }
         }
 
@@ -58,27 +57,17 @@ namespace Poprijonok_DovudenkovAC3802
         {
             if(MessageBox.Show("Внимание!", "Удалаить агента?", MessageBoxButton.YesNoCancel) == MessageBoxResult.Yes)
             {
-                Button btnEdit = (Button)sender;
-                Agent agent = dbContext.db.Agent.Where(a => a.ID == int.Parse(btnEdit.Uid.ToString())).FirstOrDefault();
+                Button btnDelete = (Button)sender;
+                Agent agent = Agents.Where(a => a.ID == int.Parse(btnDelete.Uid.ToString())).FirstOrDefault();
                 agent.IsDeleted = true;
-                dgRefresh();
+                listViewRefresh();
             }
         }
-        private void dgRefresh()
+        private void listViewRefresh()
         {
-            lvAgents.ItemsSource = dbContext.db.Agent.ToList();
+            Agents = dbContext.db.Agent.ToList().Where(a => a.IsDeleted == false).ToList();
+            lvAgents.ItemsSource = Agents;
             lvAgents.Items.Refresh();
-            hideDeletedItem();
-        }
-        private void hideDeletedItem()
-        {
-            //foreach (item in lvAgents.Items)
-            //{
-            //    if ((item.DataContext as Agent).IsDeleted)
-            //    {
-            //        item.Visibility = Visibility.Collapsed;
-            //    }
-            //}
         }
 
         private void btnAdd_Click(object sender, RoutedEventArgs e)
@@ -87,7 +76,7 @@ namespace Poprijonok_DovudenkovAC3802
 
             if (editWindow.ShowDialog() == true)
             {
-                dgRefresh();
+                listViewRefresh();
             }
         }
     }

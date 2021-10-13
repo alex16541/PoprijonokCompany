@@ -49,14 +49,27 @@
                                 <TextBlock Text="{Binding Phone}"></TextBlock>
                                 <TextBlock Text="{Binding Priority, StringFormat={}Приоритет: {0}}"></TextBlock>
                             </StackPanel>
-                            <Button Name="btnEdit" Content="Изменить"
+                            <StackPanel Grid.Column="2"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center">
+                                <Button Name="btnEdit" Content="Изменить"
                                 Uid="{Binding ID}"
                                 Height="40"
+                                Width="100"
                                 Click="btnEdit_Click" Margin="5"
-                                Grid.Column="2"
                                 Background="Aqua"
                                 Foreground="#FFF9969E" FontWeight="Bold"
                                 FontFamily="Comic Sans MS" />
+                                
+                                <Button Name="btnDelete" Content="Удалить"
+                                Uid="{Binding ID}"
+                                Height="40"
+                                Width="100"
+                                Click="btnDelete_Click" Margin="5"
+                                Background="Aqua"
+                                Foreground="#FFF9969E" FontWeight="Bold"
+                                FontFamily="Comic Sans MS" />
+                            </StackPanel>
                             <TextBlock Grid.Column="3" HorizontalAlignment="Center"
                                    VerticalAlignment="Center" Text="{Binding SalesProcent, StringFormat={}{0}%}"/>
                         </Grid>

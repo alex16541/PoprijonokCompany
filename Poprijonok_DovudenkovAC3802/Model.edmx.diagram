@@ -4,33 +4,33 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="963b11c05fe2428782819008c1a28d18" Name="Diagram1">
-        <EntityTypeShape EntityType="AgentsOfCompanyModel.Agent" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgentsOfCompanyModel.AgentPriorityHistory" Width="1.5" PointX="5.25" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgentsOfCompanyModel.AgentType" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgentsOfCompanyModel.Material" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgentsOfCompanyModel.MaterialCountHistory" Width="1.5" PointX="5.25" PointY="10.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgentsOfCompanyModel.MaterialType" Width="1.5" PointX="0.75" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgentsOfCompanyModel.Product" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgentsOfCompanyModel.ProductCostHistory" Width="1.5" PointX="5.25" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgentsOfCompanyModel.ProductMaterial" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgentsOfCompanyModel.ProductSale" Width="1.5" PointX="5.25" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgentsOfCompanyModel.ProductType" Width="1.5" PointX="0.75" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgentsOfCompanyModel.Shop" Width="1.5" PointX="5.25" PointY="19.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgentsOfCompanyModel.Supplier" Width="1.5" PointX="5.25" PointY="13.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="AgentsOfCompanyModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="AgentsOfCompanyModel.FK_Agent_AgentType" ManuallyRouted="false" />
-        <AssociationConnector Association="AgentsOfCompanyModel.FK_AgentPriorityHistory_Agent" ManuallyRouted="false" />
-        <AssociationConnector Association="AgentsOfCompanyModel.FK_ProductSale_Agent" ManuallyRouted="false" />
-        <AssociationConnector Association="AgentsOfCompanyModel.FK_Shop_Agent" ManuallyRouted="false" />
-        <AssociationConnector Association="AgentsOfCompanyModel.FK_Material_MaterialType" ManuallyRouted="false" />
-        <AssociationConnector Association="AgentsOfCompanyModel.FK_MaterialCountHistory_Material" ManuallyRouted="false" />
-        <AssociationConnector Association="AgentsOfCompanyModel.FK_ProductMaterial_Material" ManuallyRouted="false" />
-        <AssociationConnector Association="AgentsOfCompanyModel.FK_Product_ProductType" ManuallyRouted="false" />
-        <AssociationConnector Association="AgentsOfCompanyModel.FK_ProductCostHistory_Product" ManuallyRouted="false" />
-        <AssociationConnector Association="AgentsOfCompanyModel.FK_ProductMaterial_Product" ManuallyRouted="false" />
-        <AssociationConnector Association="AgentsOfCompanyModel.FK_ProductSale_Product" ManuallyRouted="false" />
-        <AssociationConnector Association="AgentsOfCompanyModel.MaterialSupplier" ManuallyRouted="false" />
+      <Diagram DiagramId="963b11c05fe2428782819008c1a28d18" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="AgentsOfCompanyModel.Agent" Width="1.5" PointX="3" PointY="10.25" />
+        <EntityTypeShape EntityType="AgentsOfCompanyModel.AgentPriorityHistory" Width="1.5" PointX="5.25" PointY="21.625" />
+        <EntityTypeShape EntityType="AgentsOfCompanyModel.AgentType" Width="1.5" PointX="0.75" PointY="11.375" />
+        <EntityTypeShape EntityType="AgentsOfCompanyModel.Material" Width="1.5" PointX="3" PointY="0.75" />
+        <EntityTypeShape EntityType="AgentsOfCompanyModel.MaterialCountHistory" Width="1.5" PointX="5.25" PointY="15.875" />
+        <EntityTypeShape EntityType="AgentsOfCompanyModel.MaterialType" Width="1.5" PointX="0.75" PointY="4.125" />
+        <EntityTypeShape EntityType="AgentsOfCompanyModel.Product" Width="1.5" PointX="3" PointY="5.875" />
+        <EntityTypeShape EntityType="AgentsOfCompanyModel.ProductCostHistory" Width="1.5" PointX="5.25" PointY="9.375" />
+        <EntityTypeShape EntityType="AgentsOfCompanyModel.ProductMaterial" Width="1.5" PointX="5.25" PointY="6.625" />
+        <EntityTypeShape EntityType="AgentsOfCompanyModel.ProductSale" Width="1.5" PointX="5.25" PointY="3.375" />
+        <EntityTypeShape EntityType="AgentsOfCompanyModel.ProductType" Width="1.5" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="AgentsOfCompanyModel.Shop" Width="1.5" PointX="5.25" PointY="18.875" />
+        <EntityTypeShape EntityType="AgentsOfCompanyModel.Supplier" Width="1.5" PointX="5.25" PointY="12.75" />
+        <EntityTypeShape EntityType="AgentsOfCompanyModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="3.25" />
+        <AssociationConnector Association="AgentsOfCompanyModel.FK_Agent_AgentType" />
+        <AssociationConnector Association="AgentsOfCompanyModel.FK_AgentPriorityHistory_Agent" />
+        <AssociationConnector Association="AgentsOfCompanyModel.FK_ProductSale_Agent" />
+        <AssociationConnector Association="AgentsOfCompanyModel.FK_Shop_Agent" />
+        <AssociationConnector Association="AgentsOfCompanyModel.FK_Material_MaterialType" />
+        <AssociationConnector Association="AgentsOfCompanyModel.FK_MaterialCountHistory_Material" />
+        <AssociationConnector Association="AgentsOfCompanyModel.FK_ProductMaterial_Material" />
+        <AssociationConnector Association="AgentsOfCompanyModel.FK_Product_ProductType" />
+        <AssociationConnector Association="AgentsOfCompanyModel.FK_ProductCostHistory_Product" />
+        <AssociationConnector Association="AgentsOfCompanyModel.FK_ProductMaterial_Product" />
+        <AssociationConnector Association="AgentsOfCompanyModel.FK_ProductSale_Product" />
+        <AssociationConnector Association="AgentsOfCompanyModel.MaterialSupplier" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
