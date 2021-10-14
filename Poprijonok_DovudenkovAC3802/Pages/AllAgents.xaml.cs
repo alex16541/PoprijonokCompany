@@ -79,5 +79,23 @@ namespace Poprijonok_DovudenkovAC3802
                 listViewRefresh();
             }
         }
+
+        private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            lvAgents.ItemsSource = Agents.Where(a => (
+            a.Title + a.SalesPerYear.ToString() + a.Phone.ToString()
+            ).ToLower().Contains(tbSearch.Text.ToLower()));
+            lvAgents.Items.Refresh();
+        }
+
+        private void cbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void cbFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

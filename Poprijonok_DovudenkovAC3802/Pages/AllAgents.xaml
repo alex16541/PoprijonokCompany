@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Poprijonok_DovudenkovAC3802"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="850" d:DesignWidth="850"
       Title="AllAgents"
       Background="White"
       ShowsNavigationUI="False">
@@ -13,18 +13,41 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="5*"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="40*"/>
-            <RowDefinition Height="10*"/>
+            <RowDefinition Height="75"/>
         </Grid.RowDefinitions>
-        <ListView Grid.Row="1" Name="lvAgents" MaxWidth="815" 
-                  FontFamily="Comic Sans MS"
-                  FontWeight="Bold">
+
+        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center">
+            <TextBox Name="tbSearch" MinWidth="500px" 
+                        Margin="10" TextWrapping="NoWrap"
+                        VerticalContentAlignment="Center"
+                        FontFamily="Comic Sans MS"
+                        FontWeight="Bold"
+                        TextChanged="tbSearch_TextChanged"/>
+            <ComboBox Name="cbSort" MinWidth="100"
+                        Margin="10"
+                        VerticalContentAlignment="Center"
+                        FontFamily="Comic Sans MS"
+                        FontWeight="Bold"
+                        SelectionChanged="cbSort_SelectionChanged"/>
+            <ComboBox Name="cbFilter"
+                        MinWidth="100"
+                        Margin="10"
+                        VerticalContentAlignment="Center"
+                        FontFamily="Comic Sans MS"
+                        FontWeight="Bold"
+                        SelectionChanged="cbFilter_SelectionChanged"/>
+        </StackPanel>
+        <ListView Grid.Row="2" Name="lvAgents" Width="740" 
+                    FontFamily="Comic Sans MS"
+                    FontWeight="Bold">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border BorderBrush="#FF43DCFE" BorderThickness="2">
-                        <Grid Width="780" Height="157" Background="#FFF9969E" 
-                          HorizontalAlignment="Center"
-                          VerticalAlignment="Center">
+                        <Grid Width="700" Height="157" Background="#FFF9969E" 
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="2*"/>
                                 <ColumnDefinition Width="2*"/>
@@ -33,10 +56,10 @@
                             </Grid.ColumnDefinitions>
                             <Rectangle Grid.Column="0" Fill="Aqua" Margin="5" RadiusX="30" RadiusY="30"></Rectangle>
                             <Image Source="{Binding LogoPath}"
-                               Grid.Column="0" Margin="10"
-                               Width="180" Stretch="Uniform"
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Center"/>
+                                Grid.Column="0" Margin="10"
+                                Width="180" Stretch="Uniform"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"/>
                             <StackPanel Orientation="Vertical" Grid.Column="1"
                                         VerticalAlignment="Center"
                                         Margin="20">
@@ -60,7 +83,7 @@
                                 Background="Aqua"
                                 Foreground="#FFF9969E" FontWeight="Bold"
                                 FontFamily="Comic Sans MS" />
-                                
+
                                 <Button Name="btnDelete" Content="Удалить"
                                 Uid="{Binding ID}"
                                 Height="40"
@@ -71,29 +94,30 @@
                                 FontFamily="Comic Sans MS" />
                             </StackPanel>
                             <TextBlock Grid.Column="3" HorizontalAlignment="Center"
-                                   VerticalAlignment="Center" Text="{Binding SalesProcent, StringFormat={}{0}%}"/>
+                                    VerticalAlignment="Center" Text="{Binding SalesProcent, StringFormat={}{0}%}"/>
                         </Grid>
                     </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
         <Button Name="btnBack" Content="Назад"
-                HorizontalAlignment="Left" Margin="10,0,0,0"
+                HorizontalAlignment="Left" Margin="20,0,0,0"
                 VerticalAlignment="Center" Click="btnBack_Click" 
-                FontSize="28" Height="60" Background="#FFF9969E" 
+                FontSize="24" Height="50" Background="#FFF9969E" 
                 Foreground="#FF43DCFE" FontWeight="Bold" 
-                FontFamily="Comic Sans MS" Grid.Row="2" Width="150" />
+                FontFamily="Comic Sans MS" Grid.Row="3" Width="150" />
         <Label Content="Попрыженок" HorizontalAlignment="Center" 
                Margin="0,0,0,0" VerticalAlignment="Center"
                FontSize="20" HorizontalContentAlignment="Center"
                VerticalContentAlignment="Top" Foreground="#FF43DCFE"
                RenderTransformOrigin="0.684,0.545" FontFamily="Comic Sans MS"/>
         <Button Name="btnAdd" Content="Добавить"
-                HorizontalAlignment="Right" Margin="0,11,10,11"
+                HorizontalAlignment="Right" Margin="0,11,20,11"
                 VerticalAlignment="Center" Click="btnAdd_Click" 
-                FontSize="28" Height="60" Background="#FFF9969E"
+                FontSize="24" Height="50" Background="#FFF9969E"
                 Foreground="#FF43DCFE" FontWeight="Bold"
-                FontFamily="Comic Sans MS" Grid.Row="2" 
+                FontFamily="Comic Sans MS" Grid.Row="3" 
                 Width="150" />
 
     </Grid>
