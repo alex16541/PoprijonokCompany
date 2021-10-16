@@ -31,13 +31,20 @@ namespace Poprijonok_DovudenkovAC3802
         {
             this.owner = owner;
             InitializeComponent();
+
             dbContext.db.Agent.Load();
             lvAgents.SelectedValuePath = "ID";
+
             loadAgents();
             listViewRefresh();
+
+            cbSort.Items.Add("Сортировка");
             cbSort.Items.Add("От А до Я");
             cbSort.Items.Add("От Я до А");
             cbSort.SelectedIndex = 0;
+
+            cbFilter.Items.Add("Фильтрация");
+            cbFilter.SelectedIndex = 0;
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -48,9 +55,8 @@ namespace Poprijonok_DovudenkovAC3802
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            Button btnEdit = (Button)sender;
-            int agentId = int.Parse(btnEdit.Uid.ToString());
-            AgentEditWindow editWindow = new AgentEditWindow(agentId);
+            Agent agent = (Agent)lvAgents.SelectedItem;
+            AgentEditWindow editWindow = new AgentEditWindow(agent.ID);
             
             if(editWindow.ShowDialog() == true)
             {
@@ -116,13 +122,25 @@ namespace Poprijonok_DovudenkovAC3802
             {
                 Agents = Agents.OrderByDescending(a => a.Title).ToList();
             }
+            else
+            {
+                loadAgents();
+            }
             listViewRefresh();
-            tbSearch.Text = searchText;
+            if(searchText != "")
+            {
+                tbSearch.Text = searchText;
+            }
         }
 
         private void cbFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            btnEdit_Click(sender, e);
         }
     }
 }
