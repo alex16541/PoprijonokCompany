@@ -30,14 +30,16 @@
                         VerticalContentAlignment="Center"
                         FontFamily="Comic Sans MS"
                         FontWeight="Bold"
-                        SelectionChanged="cbSort_SelectionChanged"/>
+                        SelectionChanged="cbSort_SelectionChanged"
+                        FontSize="10"/>
             <ComboBox Name="cbFilter"
                         MinWidth="100"
                         Margin="10"
                         VerticalContentAlignment="Center"
                         FontFamily="Comic Sans MS"
                         FontWeight="Bold"
-                        SelectionChanged="cbFilter_SelectionChanged"/>
+                        SelectionChanged="cbFilter_SelectionChanged"
+                        FontSize="10"/>
         </StackPanel>
         <ListView Grid.Row="2" Name="lvAgents" Width="740" 
                     FontFamily="Comic Sans MS"

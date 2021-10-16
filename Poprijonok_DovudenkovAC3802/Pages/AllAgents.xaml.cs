@@ -22,7 +22,7 @@ namespace Poprijonok_DovudenkovAC3802
     public partial class AllAgents : Page
     {
         NavigationWindow owner;
-        List<Agent> Agents;
+        private List<Agent> Agents;
         public AllAgents()
         {
             InitializeComponent();
@@ -33,7 +33,11 @@ namespace Poprijonok_DovudenkovAC3802
             InitializeComponent();
             dbContext.db.Agent.Load();
             lvAgents.SelectedValuePath = "ID";
+            loadAgents();
             listViewRefresh();
+            cbSort.Items.Add("От А до Я");
+            cbSort.Items.Add("От Я до А");
+            cbSort.SelectedIndex = 0;
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -45,11 +49,22 @@ namespace Poprijonok_DovudenkovAC3802
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             Button btnEdit = (Button)sender;
-            AgentEditWindow editWindow = new AgentEditWindow(int.Parse(btnEdit.Uid.ToString()));
+            int agentId = int.Parse(btnEdit.Uid.ToString());
+            AgentEditWindow editWindow = new AgentEditWindow(agentId);
             
             if(editWindow.ShowDialog() == true)
             {
-                listViewRefresh();
+                pageRefresh();
+            }
+        }
+
+        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        {
+            AgentEditWindow editWindow = new AgentEditWindow();
+
+            if (editWindow.ShowDialog() == true)
+            {
+                pageRefresh();
             }
         }
 
@@ -60,24 +75,26 @@ namespace Poprijonok_DovudenkovAC3802
                 Button btnDelete = (Button)sender;
                 Agent agent = Agents.Where(a => a.ID == int.Parse(btnDelete.Uid.ToString())).FirstOrDefault();
                 agent.IsDeleted = true;
-                listViewRefresh();
+                pageRefresh();
             }
         }
-        private void listViewRefresh()
+
+        private void pageRefresh()
+        {
+            tbSearch.Text = "";
+            loadAgents();
+            listViewRefresh();
+        }
+
+        private void loadAgents()
         {
             Agents = dbContext.db.Agent.ToList().Where(a => a.IsDeleted == false).ToList();
-            lvAgents.ItemsSource = Agents;
-            lvAgents.Items.Refresh();
         }
 
-        private void btnAdd_Click(object sender, RoutedEventArgs e)
+        private void listViewRefresh()
         {
-            AgentEditWindow editWindow = new AgentEditWindow();
-
-            if (editWindow.ShowDialog() == true)
-            {
-                listViewRefresh();
-            }
+            lvAgents.ItemsSource = Agents;
+            lvAgents.Items.Refresh();
         }
 
         private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
@@ -90,7 +107,17 @@ namespace Poprijonok_DovudenkovAC3802
 
         private void cbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            string searchText = tbSearch.Text;
+            if (cbSort.SelectedValue.ToString() == "От А до Я")
+            {
+                Agents = Agents.OrderBy(a => a.Title).ToList();
+            }
+            else if (cbSort.SelectedValue.ToString() == "От Я до А")
+            {
+                Agents = Agents.OrderByDescending(a => a.Title).ToList();
+            }
+            listViewRefresh();
+            tbSearch.Text = searchText;
         }
 
         private void cbFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
