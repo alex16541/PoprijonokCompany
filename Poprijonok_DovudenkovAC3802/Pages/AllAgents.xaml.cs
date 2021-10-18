@@ -23,6 +23,10 @@ namespace Poprijonok_DovudenkovAC3802
     {
         NavigationWindow owner;
         private List<Agent> Agents;
+        private int agentTypeId = 0;
+        private string searchText = "";
+        private string agentsSortType = "";
+
         public AllAgents()
         {
             InitializeComponent();
@@ -43,8 +47,11 @@ namespace Poprijonok_DovudenkovAC3802
             cbSort.Items.Add("От Я до А");
             cbSort.SelectedIndex = 0;
 
-            cbFilter.Items.Add("Фильтрация");
-            cbFilter.SelectedIndex = 0;
+            var agentTypes = dbContext.db.AgentType.Select(type => new { titleId = type.ID, typeTitle = type.Title }).ToList();
+            cbFilter.ItemsSource = agentTypes.Append(new { titleId = 0, typeTitle = "Все типы" }).Reverse().ToList();
+            cbFilter.DisplayMemberPath = "typeTitle";
+            cbFilter.SelectedValuePath = "titleId";
+            cbFilter.SelectedValue = 0;
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -55,12 +62,14 @@ namespace Poprijonok_DovudenkovAC3802
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
+            Button btn = sender as Button;
+            lvAgents.SelectedValue = btn.Uid;
             Agent agent = (Agent)lvAgents.SelectedItem;
             AgentEditWindow editWindow = new AgentEditWindow(agent.ID);
             
             if(editWindow.ShowDialog() == true)
             {
-                pageRefresh();
+                prepareAgents();
             }
         }
 
@@ -70,7 +79,7 @@ namespace Poprijonok_DovudenkovAC3802
 
             if (editWindow.ShowDialog() == true)
             {
-                pageRefresh();
+                prepareAgents();
             }
         }
 
@@ -81,16 +90,10 @@ namespace Poprijonok_DovudenkovAC3802
                 Button btnDelete = (Button)sender;
                 Agent agent = Agents.Where(a => a.ID == int.Parse(btnDelete.Uid.ToString())).FirstOrDefault();
                 agent.IsDeleted = true;
-                pageRefresh();
+                prepareAgents();
             }
         }
 
-        private void pageRefresh()
-        {
-            tbSearch.Text = "";
-            loadAgents();
-            listViewRefresh();
-        }
 
         private void loadAgents()
         {
@@ -105,37 +108,60 @@ namespace Poprijonok_DovudenkovAC3802
 
         private void tbSearch_TextChanged(object sender, TextChangedEventArgs e)
         {
-            lvAgents.ItemsSource = Agents.Where(a => (
-            a.Title + a.SalesPerYear.ToString() + a.Phone.ToString()
-            ).ToLower().Contains(tbSearch.Text.ToLower()));
-            lvAgents.Items.Refresh();
+            searchText = tbSearch.Text;
+            prepareAgents();
         }
 
         private void cbSort_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            string searchText = tbSearch.Text;
-            if (cbSort.SelectedValue.ToString() == "От А до Я")
-            {
-                Agents = Agents.OrderBy(a => a.Title).ToList();
-            }
-            else if (cbSort.SelectedValue.ToString() == "От Я до А")
-            {
-                Agents = Agents.OrderByDescending(a => a.Title).ToList();
-            }
-            else
-            {
-                loadAgents();
-            }
-            listViewRefresh();
-            if(searchText != "")
-            {
-                tbSearch.Text = searchText;
-            }
+            agentsSortType = cbSort.SelectedValue.ToString();
+            prepareAgents();
         }
 
         private void cbFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            agentTypeId = int.Parse(cbFilter.SelectedValue.ToString());
+            prepareAgents();
+        }
 
+        private void prepareAgents()
+        {
+            loadAgents();
+            searchAgents();
+            sortAgents();
+            fitlerAgents();
+            listViewRefresh();
+        }
+
+        private void fitlerAgents()
+        {
+            if (agentTypeId != 0)
+            {
+                Agents = Agents.Where(a => a.AgentTypeID == agentTypeId).ToList();
+            }
+        }
+
+        private void searchAgents()
+        {
+            Agents = Agents.Where(a =>
+            (a.Title +
+            a.SalesPerYear.ToString() +
+            a.Phone.ToString())
+            .ToLower()
+            .Contains(searchText.ToLower())).ToList();
+        }
+
+        private void sortAgents()
+        {
+            string type = agentsSortType;
+            if (type == "От А до Я")
+            {
+                Agents = Agents.OrderBy(a => a.Title).ToList();
+            }
+            else if (type == "От Я до А")
+            {
+                Agents = Agents.OrderByDescending(a => a.Title).ToList();
+            }
         }
 
         private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
