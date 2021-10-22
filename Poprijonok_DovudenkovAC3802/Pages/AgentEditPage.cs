@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.Win32;
+using System.IO;
 
 namespace Poprijonok_DovudenkovAC3802
 {
@@ -24,6 +26,7 @@ namespace Poprijonok_DovudenkovAC3802
         public int id;
         private bool isEdited = false;
         private Agent agent;
+        private string logoPath;
 
         public AgentEditWindow()
         {
@@ -70,6 +73,7 @@ namespace Poprijonok_DovudenkovAC3802
                         {
                             agent.Title = tbName.Text;
                             agent.Phone = tbPhone.Text;
+                            //agent.Logo = logoPath;
                             int priority;
                             if(int.TryParse(tbPreority.Text, out priority))
                             {
@@ -101,6 +105,29 @@ namespace Poprijonok_DovudenkovAC3802
             cbType.DisplayMemberPath = "Title";
             cbType.SelectedIndex = 0;
             agent = new Agent();
+        }
+
+        private void btnLoadLogo_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog save = new OpenFileDialog
+            {
+                Filter = "PNG Files (*.png)|*.png"
+            };
+
+            if (save.ShowDialog() == true)
+            {
+                Uri uri = new Uri(save.FileName);
+                var bitmap = new BitmapImage(uri);
+                logoPath = @"\agents\" + save.SafeFileName;
+                imgLogo.Source = bitmap;
+                var encoder = new PngBitmapEncoder();
+                encoder.Frames.Add(BitmapFrame.Create(bitmap));
+
+                using (var stream = new FileStream(@"../../Resource/agents/"+save.SafeFileName,FileMode.Create))
+                {
+                    encoder.Save(stream);
+                }
+            }
         }
     }
 }
